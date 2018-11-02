@@ -188,10 +188,11 @@ class VersionRangeResolveIntegrationTest extends AbstractDependencyResolutionTes
         resolvedVersion
     }
 
+    // TODO:DAZ This is too brittle
     def parseFailureType(ExecutionFailure failure) {
         if (failure.error.contains("has been rejected") ||
             (failure.error.contains("Cannot find a version of 'org:foo' that satisfies the version constraints")
-                && (failure.error.contains("rejects") || failure.error.contains("strictly")))) {
+                && (failure.error.contains(" rejects") || failure.error.contains(" strictly")))) {
             return VersionRangeResolveTestScenarios.REJECTED
         }
         return VersionRangeResolveTestScenarios.FAILED
